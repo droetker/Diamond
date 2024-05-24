@@ -1,0 +1,21 @@
+body { margin: 0; }
+.bottomPanel
+{
+    width: 80%;
+    height: 100px;
+    bottom: 10px;
+    position: absolute;
+    display: none;
+    background-color: white;
+    left: 50%;
+    transform: translate(-50%);
+    border-radius: 10px;
+}
+.container
+{
+    height: 100%;
+}
+.container .row
+{
+    height: 100%;
+}
