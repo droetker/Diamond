@@ -11,6 +11,7 @@ import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js'
 import { SSRPass } from 'three/addons/postprocessing/SSRPass.js';
 import { ReflectorForSSRPass } from 'three/addons/objects/ReflectorForSSRPass.js';
 
+
 import { MeshBVH, MeshBVHUniformStruct, BVHShaderGLSL, SAH } from 'three-mesh-bvh';
 
 let scene, camera, renderer, controls;
@@ -134,33 +135,6 @@ function initPostProcessing()
     bloomPass.threshold = bloomParams.threshold;
     bloomPass.strength = bloomParams.strength;
     bloomPass.radius = bloomParams.radius;
-
-    const gui = new GUI();
-
-    const bloomFolder = gui.addFolder( 'bloom' );
-
-    bloomFolder.add( bloomParams, 'threshold', 0.0, 1.0 ).onChange( function ( value ) {
-
-        bloomPass.threshold = Number( value );
-
-    } );
-
-    bloomFolder.add( bloomParams, 'strength', 0.0, 3.0 ).onChange( function ( value ) {
-
-        bloomPass.strength = Number( value );
-
-    } );
-
-    gui.add( bloomParams, 'radius', 0.0, 1.0 ).step( 0.01 ).onChange( function ( value ) {
-
-        bloomPass.radius = Number( value );
-
-    } );
-    gui.add( bloomParams, 'exposure', 0.1, 2 ).onChange( function ( value ) {
-
-        renderer.toneMappingExposure = Math.pow( value, 4.0 );
-
-    } );
     composer.addPass( bloomPass );
 
     animate();
@@ -196,7 +170,6 @@ async function createDiamondMaterial()
         }
         else if(obj.material != undefined)
             obj.material.envMap = environment;
-        console.log(obj);
     })
 }
 function getDiamondShader(environment)
